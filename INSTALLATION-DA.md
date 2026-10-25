@@ -55,3 +55,37 @@ Tilpasset fra Greelans Half-Life Deathmatch: Source-skabelon i CubeCoders/AMPTem
 - [Historisk Linux-depotstruktur; skal verificeres mod installeret build](https://steamdb.info/depot/806641/history/)
 - [Dystopia på Steam](https://store.steampowered.com/app/17580/Dystopia/)
 
+
+## Opdatering til version 2: RCON og egne kommandoer
+
+Stop spilserveren. Vælg Fetch Latest under Configuration Repositories i ADS.
+Højreklik derefter på den eksisterende instans og vælg Refresh Configuration.
+Kør Update inde i spilinstansen, så den nye AMP_server.cfg-skabelon bliver hentet.
+Start serveren igen og prøv kommandoen status i AMP-konsollen.
+
+Under Configuration → Dystopia findes nu Additional Server Settings.
+Skriv én kommando pr. linje, for eksempel:
+
+    sv_gravity 600
+    mp_allowvoting_map 1
+    mp_allowvoting_kick 1
+
+Kommandoerne køres ved start og mapskift. Indstillinger, som findes som særskilte
+felter i AMP, bør ændres i de felter. Angiv ikke rcon_password i egne kommandoer;
+den sættes automatisk til AMP's adgangskode efter de øvrige indstillinger.
+Brug ikke exec amp-server.cfg i feltet, da det giver rekursion.
+
+settings.scr beskriver opsætningsmenuen i spillet. server.cfg.example er kun et
+eksempel; den køres ikke automatisk under dette navn. Skabelonen bruger
+amp-server.cfg som den aktive serverkonfiguration.
+
+Bad Password betyder, at RCON-forbindelsen når frem, men adgangskoden afvises.
+Version 2 erstatter den oprindelige KVP-mapping med samme template/AutoMap-metode
+som CubeCoders' Source-skabeloner. Den præcise årsag på din server kan først
+bekræftes ved kontrol af den genererede konfiguration og en ny RCON-test.
+Hvis fejlen fortsætter: Kontrollér at amp-server.cfg indeholder en ikke-tom
+rcon_password, at ingen andre configs/plugins ændrer den, og at AMP peger på den
+korrekte spilport. Del ikke selve adgangskoden. Retningen på IP-adressen i loggen
+viser RCON-klienten; loglinjen alene beviser ikke, at klienten er AMP.
+
+Rettelsen er statisk kontrolleret, men endnu ikke driftstestet mod din instans.

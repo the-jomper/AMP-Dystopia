@@ -1,10 +1,20 @@
 [
-    {
-        "UpdateStageName": "SteamCMD Server Download",
-        "UpdateSourcePlatform": "Linux",
-        "UpdateSource": "SteamCMD",
-        "UpdateSourceData": "17585",
-        "UpdateSourceArgs": "17580",
-        "SkipOnFailure": false
-    }
+  {
+    "UpdateStageName": "SteamCMD Server Download",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "SteamCMD",
+    "UpdateSourceData": "17585",
+    "UpdateSourceArgs": "17580",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Download AMP server configuration template",
+    "UpdateSourcePlatform": "All",
+    "UpdateSource": "FetchURL",
+    "UpdateSourceData": "https://raw.githubusercontent.com/the-jomper/AMP-Dystopia/main/dystopiaserver.cfg",
+    "UpdateSourceArgs": "AMP_server.cfg",
+    "UpdateSourceTarget": "{{$FullRootDir}}",
+    "OverwriteExistingFiles": true,
+    "SkipOnFailure": false
+  }
 ]

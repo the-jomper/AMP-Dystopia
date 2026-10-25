@@ -1,149 +1,228 @@
 [
-    {
-        "DisplayName": "RCON Password",
-        "Category": "Dystopia:stadia_controller",
-        "Subcategory": "Server:dns:1",
-        "Description": "",
-        "Keywords": "",
-        "FieldName": "$RemoteAdminPassword",
-        "InputType": "text",
-        "Hidden": true,
-        "ParamFieldName": "rcon_password",
-        "EnumValues": {}
-    },
-    {
-        "DisplayName": "Server Name",
-        "Category": "Dystopia:stadia_controller",
-        "Subcategory": "Server:dns:1",
-        "Description": "Sets the name of the server that appears in the server list",
-        "Keywords": "server,name,hostname",
-        "FieldName": "hostname",
-        "InputType": "text",
-        "ParamFieldName": "hostname",
-        "DefaultValue": "AMP Powered Dystopia Server",
-        "EnumValues": {}
-    },
-    {
-        "DisplayName": "LAN Server",
-        "Category": "Dystopia:stadia_controller",
-        "Subcategory": "Server:dns:1",
-        "Description": "If enabled, the server will operate as a LAN server: no heartbeat, no authentication, and no non-class C addresses",
-        "Keywords": "lan,local,sv_lan",
-        "FieldName": "sv_lan",
-        "InputType": "checkbox",
-        "ParamFieldName": "sv_lan",
-        "DefaultValue": "0",
-        "EnumValues": {
-            "False": "0",
-            "True": "1"
-        }
-    },
-    {
-        "DisplayName": "Server Password",
-        "Category": "Dystopia:stadia_controller",
-        "Subcategory": "Server:dns:1",
-        "Description": "Sets the password required to connect to the server. Default is no password",
-        "Keywords": "server,password,sv_password",
-        "FieldName": "sv_password",
-        "InputType": "Password",
-        "ParamFieldName": "sv_password",
-        "DefaultValue": "",
-        "EnumValues": {}
-    },
-    {
-        "DisplayName": "Initial Map",
-        "Category": "Dystopia:stadia_controller",
-        "Subcategory": "Server:dns:1",
-        "Description": "Map name without .bsp; the map must exist in dystopia/maps.",
-        "Keywords": "map",
-        "FieldName": "map",
-        "InputType": "text",
-        "ParamFieldName": "map",
-        "DefaultValue": "dys_broadcast",
-        "EnumValues": {}
-    },
-    {
-        "DisplayName": "Server Region",
-        "Category": "Dystopia:stadia_controller",
-        "Subcategory": "Server:dns:1",
-        "Description": "Sets the server region shown in the server list",
-        "Keywords": "server,region,sv_region",
-        "FieldName": "sv_region",
-        "InputType": "enum",
-        "ParamFieldName": "sv_region",
-        "DefaultValue": "-1",
-        "EnumValues": {
-            "0": "East Coast US",
-            "1": "West Coast US",
-            "2": "South America",
-            "3": "Europe",
-            "4": "Asia",
-            "5": "Australia",
-            "6": "Middle East",
-            "7": "Africa",
-            "255": "World",
-            "-1": "No region"
-        }
-    },
-    {
-        "DisplayName": "Player Limit",
-        "Category": "Dystopia:stadia_controller",
-        "Subcategory": "Server:dns:1",
-        "Description": "Sets the maximum number of players allowed on the server at one time",
-        "Keywords": "max,players,limit,maxplayers",
-        "FieldName": "$MaxUsers",
-        "InputType": "number",
-        "MinValue": "1",
-        "MaxValue": "32",
-        "ParamFieldName": "sv_maxplayers",
-        "DefaultValue": "16",
-        "Placeholder": "16",
-        "Suffix": "players",
-        "EnumValues": {}
-    },
-    {
-        "DisplayName": "Enable Voice Communication",
-        "Category": "Dystopia:stadia_controller",
-        "Subcategory": "Gameplay:joystick:2",
-        "Description": "If set, voice communication will be enabled on the server",
-        "Keywords": "voice,communication,sv_voiceenable",
-        "FieldName": "sv_voiceenable",
-        "InputType": "checkbox",
-        "ParamFieldName": "sv_voiceenable",
-        "DefaultValue": "1",
-        "EnumValues": {
-            "False": "0",
-            "True": "1"
-        }
-    },
-    {
-        "DisplayName": "Allow All Talk",
-        "Category": "Dystopia:stadia_controller",
-        "Subcategory": "Gameplay:joystick:2",
-        "Description": "If enabled, players can communicate with all other players, with no team restrictions",
-        "Keywords": "all,talk,sv_alltalk",
-        "FieldName": "sv_alltalk",
-        "InputType": "checkbox",
-        "ParamFieldName": "sv_alltalk",
-        "DefaultValue": "0",
-        "EnumValues": {
-            "False": "0",
-            "True": "1"
-        }
-    },
-    {
-        "DisplayName": "Map Rotation Time Limit",
-        "Category": "Dystopia:stadia_controller",
-        "Subcategory": "Gameplay:joystick:2",
-        "Description": "Sets the game time per map. 0 = disabled",
-        "Keywords": "time,limit,rotation,mp_timelimit",
-        "FieldName": "mp_timelimit",
-        "InputType": "number",
-        "MinValue": "0",
-        "ParamFieldName": "mp_timelimit",
-        "DefaultValue": "0",
-        "Placeholder": "0",
-        "Suffix": "minutes",
-        "EnumValues": {}
+  {
+    "DisplayName": "RCON Password",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Server:dns:1",
+    "Description": "",
+    "Keywords": "",
+    "FieldName": "$RemoteAdminPassword",
+    "InputType": "text",
+    "Hidden": true,
+    "ParamFieldName": "rcon_password",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "Server Name",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Server:dns:1",
+    "Description": "Sets the name of the server that appears in the server list",
+    "Keywords": "server,name,hostname",
+    "FieldName": "hostname",
+    "InputType": "text",
+    "ParamFieldName": "hostname",
+    "DefaultValue": "AMP Powered Dystopia Server",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "LAN Server",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Server:dns:1",
+    "Description": "If enabled, the server will operate as a LAN server: no heartbeat, no authentication, and no non-class C addresses",
+    "Keywords": "lan,local,sv_lan",
+    "FieldName": "sv_lan",
+    "InputType": "checkbox",
+    "ParamFieldName": "sv_lan",
+    "DefaultValue": "0",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
     }
+  },
+  {
+    "DisplayName": "Server Password",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Server:dns:1",
+    "Description": "Sets the password required to connect to the server. Default is no password",
+    "Keywords": "server,password,sv_password",
+    "FieldName": "sv_password",
+    "InputType": "Password",
+    "ParamFieldName": "sv_password",
+    "DefaultValue": "",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "Initial Map",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Server:dns:1",
+    "Description": "Map name without .bsp; the map must exist in dystopia/maps.",
+    "Keywords": "map",
+    "FieldName": "map",
+    "InputType": "text",
+    "ParamFieldName": "map",
+    "DefaultValue": "dys_broadcast",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "Server Region",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Server:dns:1",
+    "Description": "Sets the server region shown in the server list",
+    "Keywords": "server,region,sv_region",
+    "FieldName": "sv_region",
+    "InputType": "enum",
+    "ParamFieldName": "sv_region",
+    "DefaultValue": "-1",
+    "EnumValues": {
+      "0": "East Coast US",
+      "1": "West Coast US",
+      "2": "South America",
+      "3": "Europe",
+      "4": "Asia",
+      "5": "Australia",
+      "6": "Middle East",
+      "7": "Africa",
+      "255": "World",
+      "-1": "No region"
+    }
+  },
+  {
+    "DisplayName": "Player Limit",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Server:dns:1",
+    "Description": "Sets the maximum number of players allowed on the server at one time",
+    "Keywords": "max,players,limit,maxplayers",
+    "FieldName": "$MaxUsers",
+    "InputType": "number",
+    "MinValue": "1",
+    "MaxValue": "32",
+    "ParamFieldName": "sv_maxplayers",
+    "DefaultValue": "16",
+    "Placeholder": "16",
+    "Suffix": "players",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "Enable Voice Communication",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "If set, voice communication will be enabled on the server",
+    "Keywords": "voice,communication,sv_voiceenable",
+    "FieldName": "sv_voiceenable",
+    "InputType": "checkbox",
+    "ParamFieldName": "sv_voiceenable",
+    "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Allow All Talk",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "If enabled, players can communicate with all other players, with no team restrictions",
+    "Keywords": "all,talk,sv_alltalk",
+    "FieldName": "sv_alltalk",
+    "InputType": "checkbox",
+    "ParamFieldName": "sv_alltalk",
+    "DefaultValue": "0",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Map Rotation Time Limit",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "Sets the game time per map. 0 = disabled",
+    "Keywords": "time,limit,rotation,mp_timelimit",
+    "FieldName": "mp_timelimit",
+    "InputType": "number",
+    "MinValue": "0",
+    "ParamFieldName": "mp_timelimit",
+    "DefaultValue": "0",
+    "Placeholder": "0",
+    "Suffix": "minutes",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "Additional Server Settings",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Server:dns:1",
+    "Description": "Commands executed at startup and each map load. One command per line. Do not set rcon_password here: AMP manages it.",
+    "Keywords": "startup,commands,config,settings",
+    "FieldName": "UserSettings",
+    "InputType": "Textarea",
+    "IsFlagArgument": false,
+    "ParamFieldName": "UserSettings",
+    "DefaultValue": "",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "Round Start Delay",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "Sets mp_startdelay",
+    "FieldName": "mp_startdelay",
+    "InputType": "number",
+    "ParamFieldName": "mp_startdelay",
+    "DefaultValue": "60",
+    "EnumValues": {},
+    "MinValue": "0"
+  },
+  {
+    "DisplayName": "Rounds Per Map",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "Sets mp_rounds",
+    "FieldName": "mp_rounds",
+    "InputType": "number",
+    "ParamFieldName": "mp_rounds",
+    "DefaultValue": "2",
+    "EnumValues": {},
+    "MinValue": "0"
+  },
+  {
+    "DisplayName": "Friendly Fire",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "Sets mp_friendlyfire",
+    "FieldName": "mp_friendlyfire",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_friendlyfire",
+    "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Automatic Team Balance",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "Sets mp_autoteambalance",
+    "FieldName": "mp_autoteambalance",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_autoteambalance",
+    "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Allow Voting",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "Sets mp_allowvoting",
+    "FieldName": "mp_allowvoting",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_allowvoting",
+    "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  }
 ]

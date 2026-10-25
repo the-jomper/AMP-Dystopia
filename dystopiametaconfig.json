@@ -1,22 +1,8 @@
 [
-    {
-        "ConfigFile": "dystopia/cfg/amp-server.cfg",
-        "ConfigType": "kvp",
-        "ConfigFormat": "{0} \"{1}\"",
-        "Subsections": [
-            {
-                "Heading": "$root",
-                "SettingMappings": {
-                    "$RemoteAdminPassword": "rcon_password",
-                    "hostname": "hostname",
-                    "sv_lan": "sv_lan",
-                    "sv_password": "sv_password",
-                    "sv_region": "sv_region",
-                    "sv_voiceenable": "sv_voiceenable",
-                    "sv_alltalk": "sv_alltalk",
-                    "mp_timelimit": "mp_timelimit"
-                }
-            }
-        ]
-    }
+  {
+    "ConfigFile": "dystopia/cfg/amp-server.cfg",
+    "AutoMap": true,
+    "ConfigType": "template",
+    "ConfigFileTemplate": "dystopia/AMP_server.cfg"
+  }
 ]

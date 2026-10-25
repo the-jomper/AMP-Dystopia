@@ -22,8 +22,8 @@ Meta.ExtraContainerPackages=[]
 Meta.ConfigReleaseState=NotSpecified
 Meta.NoCommercialUsage=False
 Meta.AppConfigId=bb171b5e-a1ca-43be-96d4-f81d6d3555f2
-Meta.ConfigVersion=1
-Meta.ReleaseNotes=Initial Linux template; requires live AMP validation.
+Meta.ConfigVersion=2
+Meta.ReleaseNotes=Use Source-style config template for RCON; add custom server commands and gameplay settings. Run Update after refreshing configuration.
 Meta.BreakingReleaseNotes=
 Meta.AppIsMultiIPAware=True
 App.DisplayName=Dystopia
@@ -101,3 +101,5 @@ Limits.SleepDelayMinutes=5
 Limits.DozeDelay=2
 Limits.AutoRetryCount=2
 Limits.SleepStartThresholdSeconds=25
+
+
