@@ -89,3 +89,23 @@ korrekte spilport. Del ikke selve adgangskoden. Retningen på IP-adressen i logg
 viser RCON-klienten; loglinjen alene beviser ikke, at klienten er AMP.
 
 Rettelsen er statisk kontrolleret, men endnu ikke driftstestet mod din instans.
+
+## Version 3: mapvalg
+
+Initial Map er nu en dropdown med de 19 BSP-maps fra din installation:
+dys_assemble, dys_broadcast, dys_coast, dys_cybernetic, dys_detonate,
+dys_exodus, dys_fortress, dys_fortress_classic, dys_fusion, dys_injection,
+dys_lobby, dys_silo, dys_undermine, dys_vaccine, pb_dojo, pb_rooftop,
+pb_round, pb_urbandome og varena.
+
+Use Custom Map er slået fra som standard: Initial Map bruges.
+Slå kontakten til for at bruge Custom Map Name. Indtast navnet uden .bsp.
+Kortet skal allerede findes i dystopia/maps. Feltet downloader ikke maps.
+Custom Map Name har dys_broadcast som et gyldigt udgangspunkt; erstat det med
+dit eget mapnavn før aktivering. De to felter står efter Initial Map;
+placeringen side om side afhænger af AMP's responsive layout.
+
+Hent ændringen med Fetch Latest og Refresh Configuration på den eksisterende
+instans, og genindlæs webinterfacet. Genstart spilserveren efter ændring af map.
+Maplisten ændres ikke automatisk, når filer uploades eller slettes.
+Ændringen er statisk kontrolleret; live-validering i AMP mangler.

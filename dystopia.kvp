@@ -22,8 +22,8 @@ Meta.ExtraContainerPackages=[]
 Meta.ConfigReleaseState=NotSpecified
 Meta.NoCommercialUsage=False
 Meta.AppConfigId=bb171b5e-a1ca-43be-96d4-f81d6d3555f2
-Meta.ConfigVersion=2
-Meta.ReleaseNotes=Use Source-style config template for RCON; add custom server commands and gameplay settings. Run Update after refreshing configuration.
+Meta.ConfigVersion=3
+Meta.ReleaseNotes=Add 19 standard maps, Use Custom Map toggle and Custom Map Name field.
 Meta.BreakingReleaseNotes=
 Meta.AppIsMultiIPAware=True
 App.DisplayName=Dystopia
@@ -35,7 +35,7 @@ App.ExecutableLinux=17585/bin/linux32/srcds
 App.WorkingDir=17585
 App.LinuxCommandLineArgs=
 App.WindowsCommandLineArgs=
-App.CommandLineArgs={{$PlatformArgs}} -game "{{$FullBaseDir}}dystopia" -console -usercon -nobreakpad -strictportbind -port {{$ServerPort}} -ip {{$ApplicationIPBinding}} -maxplayers {{$MaxUsers}} +tv_port {{$SourceTVPort}} +clientport {{$ClientPort}} +servercfgfile amp-server.cfg +map {{map}} +log on
+App.CommandLineArgs={{$PlatformArgs}} -game "{{$FullBaseDir}}dystopia" -console -usercon -nobreakpad -strictportbind -port {{$ServerPort}} -ip {{$ApplicationIPBinding}} -maxplayers {{$MaxUsers}} +tv_port {{$SourceTVPort}} +clientport {{$ClientPort}} +servercfgfile amp-server.cfg +map {{UseCustomMap}} +log on
 App.UseLinuxIOREDIR=False
 App.AppSettings={}
 App.EnvironmentVariables={"LD_LIBRARY_PATH":"{{$FullBaseDir}}bin/linux32:{{$FullBaseDir}}bin:{{$FullBaseDir}}:%LD_LIBRARY_PATH%","SteamAppId":"17580"}
@@ -101,5 +101,6 @@ Limits.SleepDelayMinutes=5
 Limits.DozeDelay=2
 Limits.AutoRetryCount=2
 Limits.SleepStartThresholdSeconds=25
+
 
 
