@@ -109,3 +109,47 @@ Hent ændringen med Fetch Latest og Refresh Configuration på den eksisterende
 instans, og genindlæs webinterfacet. Genstart spilserveren efter ændring af map.
 Maplisten ændres ikke automatisk, når filer uploades eller slettes.
 Ændringen er statisk kontrolleret; live-validering i AMP mangler.
+
+## Version 4: navn og flere indstillinger
+
+Repository-prefix er fjernet, så applikationslisten viser Dystopia.
+Der er nu 51 konfigurationsposter (inklusive skjult RCON-felt), med faner for
+Server, Gameplay, Bots, Voting, Network og Experimental.
+
+33 nye felter dækker bots, tom-server-dvale, legacy spawn-skalering, stopwatch,
+chatpause efter runder, ceasefire, gravity, cheats, individuelle afstemninger,
+stemmekrav og bantider, netværksrater samt 1.5.8's tre eksperimentelle tilvalg.
+De eksisterende felter og mapvalg bevares.
+
+Bot Count=0 slår bots fra. Test først med Initial Map=dys_detonate og Bot Count=8.
+Til bots på en tom server: slå Allow Bots Without Players til og Hibernate When
+Empty fra. Allowed Bot Maps accepterer en kommasepareret liste eller *.
+Bots kræver serverversion 1.5.8. bot_status i konsollen hjælper ved fejlsøgning.
+
+Scale Attacker Spawn Time (Legacy) bruger mp_scalespawntime. Kommandoen er
+dokumenteret, men har været rapporteret uden effekt siden 1.4. Der er ikke
+tilføjet en opdigtet indstilling til fast respawn-tid i sekunder.
+Round Start Delay er ventetid ved rundestart, ikke respawn efter dødsfald.
+
+Additional Server Settings udføres efter de dedikerede felter og kan derfor
+overskrive dem. Fjern eksempelvis gamle bot_quota-linjer derfra, hvis du vil
+styre bots med det nye felt. RCON-adgangskoden sættes fortsat til sidst af AMP.
+
+Installation: Fetch Latest i ADS, Refresh Configuration på instansen,
+Update inde i spilinstansen for at hente den nye AMP_server.cfg, genindlæs
+webinterfacet og genstart spilserveren. Geninstallation er ikke et krav.
+Hvis --main-fejlen vender tilbage, er opgraderingen ikke gennemført.
+
+Standardværdier for nye felter kommer fra din server.cfg.example, 1.5.8-noterne
+og serverguiden nedenfor. Opdatering introducerer dermed eksplicitte værdier
+for indstillinger, der tidligere blev overladt til spillet. Gennemse dem før start.
+Netværkets minimumsværdier bør ikke overstige de tilsvarende maksimumsværdier.
+
+Kilder:
+- Din server.cfg.example fra Dystopia-installationen.
+- https://steamcommunity.com/games/17580/announcements/detail/670631830781695620
+- https://github.com/dysemjay/dys-server-guide/blob/master/guide.md
+- https://steamcommunity.com/app/17580/discussions/0/152390014785349924/
+
+JSON, unikke feltnavne og skabelonmapping er kontrolleret lokalt.
+Den udvidede konfiguration er endnu ikke driftstestet i AMP/Dystopia.

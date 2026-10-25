@@ -196,7 +196,7 @@
     "DisplayName": "Additional Server Settings",
     "Category": "Dystopia:stadia_controller",
     "Subcategory": "Server:dns:1",
-    "Description": "Commands executed at startup and each map load. One command per line. Do not set rcon_password here: AMP manages it.",
+    "Description": "One command per line, executed at startup and map load AFTER the settings above. Remove duplicate commands here when using the dedicated fields. Do not set rcon_password here.",
     "Keywords": "startup,commands,config,settings",
     "FieldName": "UserSettings",
     "InputType": "Textarea",
@@ -260,12 +260,484 @@
   {
     "DisplayName": "Allow Voting",
     "Category": "Dystopia:stadia_controller",
-    "Subcategory": "Gameplay:joystick:2",
+    "Subcategory": "Voting:how_to_vote:4",
     "Description": "Sets mp_allowvoting",
     "FieldName": "mp_allowvoting",
     "InputType": "checkbox",
     "ParamFieldName": "mp_allowvoting",
     "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Bot Count",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Bots:smart_toy:3",
+    "Description": "Requested bot count; 0 disables bots. Limited by player slots and reserved human slots. Requires Dystopia 1.5.8.",
+    "Keywords": "bot_quota",
+    "FieldName": "bot_quota",
+    "InputType": "number",
+    "ParamFieldName": "bot_quota",
+    "DefaultValue": "0",
+    "EnumValues": {},
+    "MinValue": "0",
+    "MaxValue": "32"
+  },
+  {
+    "DisplayName": "Allowed Bot Maps",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Bots:smart_toy:3",
+    "Description": "Comma-separated map names, or * for every map. Bots are removed on disallowed maps. Alpha bots work best on dys_detonate.",
+    "Keywords": "bot_allowed_maps",
+    "FieldName": "bot_allowed_maps",
+    "InputType": "text",
+    "ParamFieldName": "bot_allowed_maps",
+    "DefaultValue": "dys_detonate",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "Reserved Human Slots",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Bots:smart_toy:3",
+    "Description": "Slots kept free for human players.",
+    "Keywords": "bot_reserve_slots",
+    "FieldName": "bot_reserve_slots",
+    "InputType": "number",
+    "ParamFieldName": "bot_reserve_slots",
+    "DefaultValue": "1",
+    "EnumValues": {},
+    "MinValue": "0",
+    "MaxValue": "32"
+  },
+  {
+    "DisplayName": "Allow Bots Without Players",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Bots:smart_toy:3",
+    "Description": "Allow bots when no human is connected. Also disable Hibernate When Empty.",
+    "Keywords": "bot_quota_nohuman",
+    "FieldName": "bot_quota_nohuman",
+    "InputType": "checkbox",
+    "ParamFieldName": "bot_quota_nohuman",
+    "DefaultValue": "0",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Hibernate When Empty",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Bots:smart_toy:3",
+    "Description": "Pause an empty server to reduce CPU usage. Disable this and enable Allow Bots Without Players for unattended bots.",
+    "Keywords": "sv_hibernate_when_empty",
+    "FieldName": "sv_hibernate_when_empty",
+    "InputType": "checkbox",
+    "ParamFieldName": "sv_hibernate_when_empty",
+    "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Scale Attacker Spawn Time (Legacy)",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "Legacy setting intended to shorten spawn time for stuck attackers. Reported ineffective since 1.4; effect in 1.5.8 is unverified. This is not a respawn time in seconds.",
+    "Keywords": "mp_scalespawntime",
+    "FieldName": "mp_scalespawntime",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_scalespawntime",
+    "DefaultValue": "0",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Stopwatch Mode",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "Competitive stopwatch mode: paired rounds compare attack times.",
+    "Keywords": "mp_stopwatch",
+    "FieldName": "mp_stopwatch",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_stopwatch",
+    "DefaultValue": "0",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "End-of-Round Chat Time",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "Time for chat after a round, in seconds.",
+    "Keywords": "mp_chattime",
+    "FieldName": "mp_chattime",
+    "InputType": "number",
+    "ParamFieldName": "mp_chattime",
+    "DefaultValue": "30",
+    "EnumValues": {},
+    "MinValue": "1",
+    "MaxValue": "120",
+    "Suffix": "seconds"
+  },
+  {
+    "DisplayName": "Ceasefire",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "Prevent players from attacking.",
+    "Keywords": "mp_ceasefire",
+    "FieldName": "mp_ceasefire",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_ceasefire",
+    "DefaultValue": "0",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Gravity",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "World gravity. Dystopia example configuration uses 600.",
+    "Keywords": "sv_gravity",
+    "FieldName": "sv_gravity",
+    "InputType": "number",
+    "ParamFieldName": "sv_gravity",
+    "DefaultValue": "600",
+    "EnumValues": {},
+    "MinValue": "0"
+  },
+  {
+    "DisplayName": "Enable Cheats",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Gameplay:joystick:2",
+    "Description": "Allow cheat-protected console commands. Leave disabled for normal play.",
+    "Keywords": "sv_cheats",
+    "FieldName": "sv_cheats",
+    "InputType": "checkbox",
+    "ParamFieldName": "sv_cheats",
+    "DefaultValue": "0",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Allow Map Votes",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Voting:how_to_vote:4",
+    "Description": "Allow players to vote for a map. Master Allow Voting must also be enabled.",
+    "Keywords": "mp_allowvoting_map",
+    "FieldName": "mp_allowvoting_map",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_allowvoting_map",
+    "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Allow Team Balance Votes",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Voting:how_to_vote:4",
+    "Description": "Allow votes to balance teams.",
+    "Keywords": "mp_allowvoting_balanceteams",
+    "FieldName": "mp_allowvoting_balanceteams",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_allowvoting_balanceteams",
+    "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Allow Team Swap Votes",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Voting:how_to_vote:4",
+    "Description": "Allow votes to swap teams.",
+    "Keywords": "mp_allowvoting_swapteams",
+    "FieldName": "mp_allowvoting_swapteams",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_allowvoting_swapteams",
+    "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Allow Map Restart Votes",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Voting:how_to_vote:4",
+    "Description": "Allow votes to restart the map.",
+    "Keywords": "mp_allowvoting_maprestart",
+    "FieldName": "mp_allowvoting_maprestart",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_allowvoting_maprestart",
+    "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Allow Kick Votes",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Voting:how_to_vote:4",
+    "Description": "Allow votes to kick players.",
+    "Keywords": "mp_allowvoting_kick",
+    "FieldName": "mp_allowvoting_kick",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_allowvoting_kick",
+    "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Allow Ban Votes",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Voting:how_to_vote:4",
+    "Description": "Allow votes to ban players.",
+    "Keywords": "mp_allowvoting_ban",
+    "FieldName": "mp_allowvoting_ban",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_allowvoting_ban",
+    "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Allow Spectator Votes",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Voting:how_to_vote:4",
+    "Description": "Allow votes to force a player to spectator mode.",
+    "Keywords": "mp_allowvoting_forcespec",
+    "FieldName": "mp_allowvoting_forcespec",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_allowvoting_forcespec",
+    "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Allow Melee-Only Votes",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Voting:how_to_vote:4",
+    "Description": "Allow votes for the special melee-only mode.",
+    "Keywords": "mp_allowvoting_meleeonly",
+    "FieldName": "mp_allowvoting_meleeonly",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_allowvoting_meleeonly",
+    "DefaultValue": "0",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Allow Stopwatch Votes",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Voting:how_to_vote:4",
+    "Description": "Allow votes to toggle stopwatch mode.",
+    "Keywords": "mp_allowvoting_stopwatch",
+    "FieldName": "mp_allowvoting_stopwatch",
+    "InputType": "checkbox",
+    "ParamFieldName": "mp_allowvoting_stopwatch",
+    "DefaultValue": "1",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Vote Percentage",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Voting:how_to_vote:4",
+    "Description": "Percentage needed for a vote to pass.",
+    "Keywords": "mp_votepct",
+    "FieldName": "mp_votepct",
+    "InputType": "number",
+    "ParamFieldName": "mp_votepct",
+    "DefaultValue": "51",
+    "EnumValues": {},
+    "MinValue": "1",
+    "MaxValue": "100",
+    "Suffix": "%"
+  },
+  {
+    "DisplayName": "Vote Kick Ban Time",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Voting:how_to_vote:4",
+    "Description": "Ban duration for vote kicks, in minutes.",
+    "Keywords": "mp_votekick_bantime",
+    "FieldName": "mp_votekick_bantime",
+    "InputType": "number",
+    "ParamFieldName": "mp_votekick_bantime",
+    "DefaultValue": "60",
+    "EnumValues": {},
+    "MinValue": "0",
+    "Suffix": "minutes"
+  },
+  {
+    "DisplayName": "Teamkill Punishment Votes",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Voting:how_to_vote:4",
+    "Description": "Punishment votes required before a player is punished.",
+    "Keywords": "mp_punishvotes",
+    "FieldName": "mp_punishvotes",
+    "InputType": "number",
+    "ParamFieldName": "mp_punishvotes",
+    "DefaultValue": "4",
+    "EnumValues": {},
+    "MinValue": "0"
+  },
+  {
+    "DisplayName": "Teamkill Ban Time",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Voting:how_to_vote:4",
+    "Description": "Punishment ban duration in minutes; 0 kicks without banning.",
+    "Keywords": "mp_punishbantime",
+    "FieldName": "mp_punishbantime",
+    "InputType": "number",
+    "ParamFieldName": "mp_punishbantime",
+    "DefaultValue": "30",
+    "EnumValues": {},
+    "MinValue": "0",
+    "Suffix": "minutes"
+  },
+  {
+    "DisplayName": "Minimum Client Rate",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Network:network_check:5",
+    "Description": "Minimum client bandwidth rate in bytes per second.",
+    "Keywords": "sv_minrate",
+    "FieldName": "sv_minrate",
+    "InputType": "number",
+    "ParamFieldName": "sv_minrate",
+    "DefaultValue": "10000",
+    "EnumValues": {},
+    "MinValue": "0"
+  },
+  {
+    "DisplayName": "Maximum Client Rate",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Network:network_check:5",
+    "Description": "Maximum client bandwidth rate; 0 means unlimited.",
+    "Keywords": "sv_maxrate",
+    "FieldName": "sv_maxrate",
+    "InputType": "number",
+    "ParamFieldName": "sv_maxrate",
+    "DefaultValue": "0",
+    "EnumValues": {},
+    "MinValue": "0"
+  },
+  {
+    "DisplayName": "Minimum Command Rate",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Network:network_check:5",
+    "Description": "Minimum client command rate per second. Keep at or below the maximum.",
+    "Keywords": "sv_mincmdrate",
+    "FieldName": "sv_mincmdrate",
+    "InputType": "number",
+    "ParamFieldName": "sv_mincmdrate",
+    "DefaultValue": "30",
+    "EnumValues": {},
+    "MinValue": "0"
+  },
+  {
+    "DisplayName": "Maximum Command Rate",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Network:network_check:5",
+    "Description": "Maximum client command rate per second.",
+    "Keywords": "sv_maxcmdrate",
+    "FieldName": "sv_maxcmdrate",
+    "InputType": "number",
+    "ParamFieldName": "sv_maxcmdrate",
+    "DefaultValue": "66",
+    "EnumValues": {},
+    "MinValue": "0"
+  },
+  {
+    "DisplayName": "Minimum Update Rate",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Network:network_check:5",
+    "Description": "Minimum server updates per second. Keep at or below the maximum.",
+    "Keywords": "sv_minupdaterate",
+    "FieldName": "sv_minupdaterate",
+    "InputType": "number",
+    "ParamFieldName": "sv_minupdaterate",
+    "DefaultValue": "30",
+    "EnumValues": {},
+    "MinValue": "0"
+  },
+  {
+    "DisplayName": "Maximum Update Rate",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Network:network_check:5",
+    "Description": "Maximum server updates per second.",
+    "Keywords": "sv_maxupdaterate",
+    "FieldName": "sv_maxupdaterate",
+    "InputType": "number",
+    "ParamFieldName": "sv_maxupdaterate",
+    "DefaultValue": "66",
+    "EnumValues": {},
+    "MinValue": "0"
+  },
+  {
+    "DisplayName": "Experimental Balance",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Experimental:science:6",
+    "Description": "1.5.8 opt-in balance changes including legbooster cost and reserve ammo.",
+    "Keywords": "sv_newbalance",
+    "FieldName": "sv_newbalance",
+    "InputType": "checkbox",
+    "ParamFieldName": "sv_newbalance",
+    "DefaultValue": "0",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Experimental Heavy",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Experimental:science:6",
+    "Description": "1.5.8 opt-in heavy-class armor, movement and fist changes.",
+    "Keywords": "sv_newheavy",
+    "FieldName": "sv_newheavy",
+    "InputType": "checkbox",
+    "ParamFieldName": "sv_newheavy",
+    "DefaultValue": "0",
+    "EnumValues": {
+      "False": "0",
+      "True": "1"
+    }
+  },
+  {
+    "DisplayName": "Experimental Movement",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Experimental:science:6",
+    "Description": "1.5.8 opt-in legboost and landing changes.",
+    "Keywords": "sv_newmovement",
+    "FieldName": "sv_newmovement",
+    "InputType": "checkbox",
+    "ParamFieldName": "sv_newmovement",
+    "DefaultValue": "0",
     "EnumValues": {
       "False": "0",
       "True": "1"

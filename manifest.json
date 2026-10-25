@@ -1,9 +1,11 @@
 {
   "id": "185ab416-944c-4553-b8a0-d126233d3143",
-  "authors": ["the-jomper"],
+  "authors": [
+    "the-jomper"
+  ],
   "origin": "https://github.com/the-jomper/AMP-Dystopia.git",
   "url": "https://github.com/the-jomper/AMP-Dystopia",
   "imagefile": "",
-  "prefix": "Dystopia Community",
+  "prefix": "",
   "repotype": "AppTemplates"
 }

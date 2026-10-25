@@ -22,8 +22,8 @@ Meta.ExtraContainerPackages=[]
 Meta.ConfigReleaseState=NotSpecified
 Meta.NoCommercialUsage=False
 Meta.AppConfigId=bb171b5e-a1ca-43be-96d4-f81d6d3555f2
-Meta.ConfigVersion=3
-Meta.ReleaseNotes=Add 19 standard maps, Use Custom Map toggle and Custom Map Name field.
+Meta.ConfigVersion=4
+Meta.ReleaseNotes=Display as Dystopia; add bots, voting, gameplay, network and experimental settings. Run Update to download the matching server config template.
 Meta.BreakingReleaseNotes=
 Meta.AppIsMultiIPAware=True
 App.DisplayName=Dystopia
@@ -101,6 +101,7 @@ Limits.SleepDelayMinutes=5
 Limits.DozeDelay=2
 Limits.AutoRetryCount=2
 Limits.SleepStartThresholdSeconds=25
+
 
 
 
