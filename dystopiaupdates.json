@@ -16,5 +16,133 @@
     "UpdateSourceTarget": "{{$FullRootDir}}",
     "OverwriteExistingFiles": true,
     "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Download Metamod",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "FetchURL",
+    "UpdateSourceData": "https://metamodsource.net/latest.php?os=linux&version={{MetamodBranch}}",
+    "UpdateSourceArgs": "amp-metamod.tar.gz",
+    "UpdateSourceTarget": "",
+    "UpdateSourceConditionSetting": "InstallMod",
+    "UpdateSourceConditionValue": "true",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Extract Metamod",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "ExtractArchive",
+    "UpdateSourceData": "amp-metamod.tar.gz",
+    "UpdateSourceArgs": "",
+    "UpdateSourceTarget": "{{$FullBaseDir}}dystopia",
+    "UpdateSourceConditionSetting": "InstallMod",
+    "UpdateSourceConditionValue": "true",
+    "SkipOnFailure": false,
+    "OverwriteExistingFiles": true,
+    "DeleteAfterExtract": true
+  },
+  {
+    "UpdateStageName": "Create SourceMod staging directory",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "CreateDirectory",
+    "UpdateSourceData": "",
+    "UpdateSourceArgs": "{{$FullBaseDir}}amp-sm-stage",
+    "UpdateSourceTarget": "",
+    "UpdateSourceConditionSetting": "InstallMod",
+    "UpdateSourceConditionValue": "true",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Download SourceMod",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "FetchURL",
+    "UpdateSourceData": "https://sourcemod.net/latest.php?os=linux&version={{SourceModBranch}}",
+    "UpdateSourceArgs": "amp-sourcemod.tar.gz",
+    "UpdateSourceTarget": "",
+    "UpdateSourceConditionSetting": "InstallMod",
+    "UpdateSourceConditionValue": "true",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Extract SourceMod to staging",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "ExtractArchive",
+    "UpdateSourceData": "amp-sourcemod.tar.gz",
+    "UpdateSourceArgs": "",
+    "UpdateSourceTarget": "{{$FullBaseDir}}amp-sm-stage",
+    "UpdateSourceConditionSetting": "InstallMod",
+    "UpdateSourceConditionValue": "true",
+    "SkipOnFailure": false,
+    "OverwriteExistingFiles": true,
+    "DeleteAfterExtract": true
+  },
+  {
+    "UpdateStageName": "Prepare SourceMod installer",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "CreateFile",
+    "UpdateSourceData": "#!/bin/bash\nset -euo pipefail\ncd dystopia/17585\ntest -d amp-sm-stage/addons/sourcemod\ntest -d dystopia\nsrc=amp-sm-stage/addons/sourcemod\ndst=dystopia/addons/sourcemod\nmkdir -p \"$dst\" dystopia/cfg\n# Existing configuration and admin files are retained.\ncp -an amp-sm-stage/cfg/. dystopia/cfg/\nmkdir -p \"$dst/configs\"\ncp -an \"$src/configs/.\" \"$dst/configs/\"\nfor part in bin extensions gamedata translations scripting; do\n    if [ -d \"$src/$part\" ]; then\n        mkdir -p \"$dst/$part\"\n        cp -a \"$src/$part/.\" \"$dst/$part/\"\n    fi\ndone\nif [ ! -d \"$dst/plugins\" ]; then\n    cp -a \"$src/plugins\" \"$dst/\"\nelse\n    # Update installed stock plugins without re-enabling disabled plugins.\n    mkdir -p \"$dst/plugins/disabled\"\n    for plugin in \"$src/plugins/\"*.smx; do\n        [ -f \"$plugin\" ] || continue\n        name=$(basename \"$plugin\")\n        if [ -f \"$dst/plugins/$name\" ]; then\n            cp -a \"$plugin\" \"$dst/plugins/$name\"\n        else\n            cp -a \"$plugin\" \"$dst/plugins/disabled/$name\"\n        fi\n    done\nfi\ncp -a amp-sm-stage/addons/metamod/. dystopia/addons/metamod/\necho 'SourceMod installed. Existing configuration and plugin enable/disable choices preserved.'",
+    "UpdateSourceArgs": "{{$FullBaseDir}}amp-install-sourcemod.sh",
+    "UpdateSourceTarget": "",
+    "UpdateSourceConditionSetting": "InstallMod",
+    "UpdateSourceConditionValue": "true",
+    "SkipOnFailure": false,
+    "OverwriteExistingFiles": true
+  },
+  {
+    "UpdateStageName": "Install SourceMod preserving settings",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "Executable",
+    "UpdateSourceData": "/bin/bash",
+    "UpdateSourceArgs": "dystopia/17585/amp-install-sourcemod.sh",
+    "UpdateSourceTarget": "",
+    "UpdateSourceConditionSetting": "InstallMod",
+    "UpdateSourceConditionValue": "true",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Activate Metamod and SourceMod",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "CreateFile",
+    "UpdateSourceData": "\"Plugin\"\n{\n\t\"file\" \"../dystopia/addons/metamod/bin/server\"\n}",
+    "UpdateSourceArgs": "{{$FullBaseDir}}dystopia/addons/metamod.vdf",
+    "UpdateSourceTarget": "",
+    "UpdateSourceConditionSetting": "InstallMod",
+    "UpdateSourceConditionValue": "true",
+    "SkipOnFailure": false,
+    "OverwriteExistingFiles": true
+  },
+  {
+    "UpdateStageName": "Deactivate Metamod and SourceMod",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "Executable",
+    "UpdateSourceData": "/bin/bash",
+    "UpdateSourceArgs": "-c \"if [ -f dystopia/17585/dystopia/addons/metamod.vdf ]; then mv -f dystopia/17585/dystopia/addons/metamod.vdf dystopia/17585/dystopia/addons/metamod.vdf.amp-disabled; fi\"",
+    "UpdateSourceTarget": "",
+    "UpdateSourceConditionSetting": "InstallMod",
+    "UpdateSourceConditionValue": "false",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Back up SourceMod admin list",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "Executable",
+    "UpdateSourceData": "/bin/bash",
+    "UpdateSourceArgs": "-c \"set -e; cd dystopia/17585/dystopia/addons/sourcemod/configs; if [ -f admins_simple.ini ]; then cp -p --backup=numbered admins_simple.ini admins_simple.ini.amp-backup; fi\"",
+    "UpdateSourceTarget": "",
+    "UpdateSourceConditionSetting": "ManageSourceModAdmins",
+    "UpdateSourceConditionValue": "true",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Write AMP-managed SourceMod admin list",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "CreateFile",
+    "UpdateSourceData": "// Managed by AMP. Edit SourceMod Admins in Configuration > Dystopia.\n{{SourceModAdmins}}\n",
+    "UpdateSourceArgs": "{{$FullBaseDir}}dystopia/addons/sourcemod/configs/admins_simple.ini",
+    "UpdateSourceTarget": "",
+    "UpdateSourceConditionSetting": "ManageSourceModAdmins",
+    "UpdateSourceConditionValue": "true",
+    "SkipOnFailure": false,
+    "OverwriteExistingFiles": true
   }
 ]

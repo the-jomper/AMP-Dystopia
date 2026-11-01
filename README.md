@@ -22,3 +22,8 @@ See [the Danish installation and test guide](INSTALLATION-DA.md) for server sett
 
 Based on CubeCoders/AMPTemplates under the included MIT license.
 
+
+## SourceMod and respawn
+
+Template version 5 adds optional Metamod/SourceMod installation, admin-list management and a Respawn tab. See [the Danish guide](SOURCEMOD-DA.md). Installation and admin changes apply on game Update; saving settings alone does not install mods. Live compatibility remains unverified.
+

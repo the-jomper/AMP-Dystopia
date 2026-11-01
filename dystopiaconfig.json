@@ -342,10 +342,10 @@
     }
   },
   {
-    "DisplayName": "Scale Attacker Spawn Time (Legacy)",
+    "DisplayName": "Scale Attacker Respawn Time (Legacy)",
     "Category": "Dystopia:stadia_controller",
-    "Subcategory": "Gameplay:joystick:2",
-    "Description": "Legacy setting intended to shorten spawn time for stuck attackers. Reported ineffective since 1.4; effect in 1.5.8 is unverified. This is not a respawn time in seconds.",
+    "Subcategory": "Respawn:timer:8",
+    "Description": "mp_scalespawntime: legacy on/off option for attacker spawn scaling, NOT a delay in seconds. Reported ineffective since Dystopia 1.4; current effect is unverified. Written to amp-server.cfg, the active config used by this template.",
     "Keywords": "mp_scalespawntime",
     "FieldName": "mp_scalespawntime",
     "InputType": "checkbox",
@@ -742,5 +742,91 @@
       "False": "0",
       "True": "1"
     }
+  },
+  {
+    "DisplayName": "Metamod / SourceMod Management",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "SourceMod:build:7",
+    "Description": "Choose Install, then stop the game and run Update. Deactivate also requires Update. Keep existing leaves installed mods unchanged. Compatibility with your Dystopia build must be checked with meta version and sm version.",
+    "Keywords": "InstallMod",
+    "FieldName": "InstallMod",
+    "InputType": "enum",
+    "ParamFieldName": "InstallMod",
+    "DefaultValue": "none",
+    "EnumValues": {
+      "false": "Deactivate (keep files)",
+      "none": "Keep existing / do nothing",
+      "true": "Install / update and activate"
+    }
+  },
+  {
+    "DisplayName": "Metamod Branch",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "SourceMod:build:7",
+    "Description": "Official Linux downloads. Latest build of selected branch is installed on each Update while installation is enabled.",
+    "Keywords": "MetamodBranch",
+    "FieldName": "MetamodBranch",
+    "InputType": "enum",
+    "ParamFieldName": "MetamodBranch",
+    "DefaultValue": "1.12",
+    "EnumValues": {
+      "1.11": "1.11 (older)",
+      "1.12": "1.12"
+    }
+  },
+  {
+    "DisplayName": "SourceMod Branch",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "SourceMod:build:7",
+    "Description": "Official Linux downloads. Use 1.12 unless testing requires an older branch.",
+    "Keywords": "SourceModBranch",
+    "FieldName": "SourceModBranch",
+    "InputType": "enum",
+    "ParamFieldName": "SourceModBranch",
+    "DefaultValue": "1.12",
+    "EnumValues": {
+      "1.11": "1.11 (older)",
+      "1.12": "1.12"
+    }
+  },
+  {
+    "DisplayName": "Manage SourceMod Admin List",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "SourceMod:build:7",
+    "Description": "On: Update replaces addons/sourcemod/configs/admins_simple.ini with the list below, after backing up the previous file. Requires SourceMod installed. Off: leave the file unchanged; existing admins remain.",
+    "Keywords": "ManageSourceModAdmins",
+    "FieldName": "ManageSourceModAdmins",
+    "InputType": "checkbox",
+    "ParamFieldName": "ManageSourceModAdmins",
+    "DefaultValue": "false",
+    "EnumValues": {
+      "False": "false",
+      "True": "true"
+    }
+  },
+  {
+    "DisplayName": "SourceMod Admins",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "SourceMod:build:7",
+    "Description": "One entry per line: \"STEAM_0:1:123456\" \"bcdfgjk\" for moderation, or \"STEAM_0:1:123456\" \"99:z\" for full access. Replace the example ID. Enable Manage SourceMod Admin List and run Update to apply. Empty list removes admins from this file; admins.cfg or SQL entries are separate.",
+    "Keywords": "SourceModAdmins",
+    "FieldName": "SourceModAdmins",
+    "InputType": "Textarea",
+    "ParamFieldName": "SourceModAdmins",
+    "DefaultValue": "",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "Population-based Respawn Scaling",
+    "Category": "Dystopia:stadia_controller",
+    "Subcategory": "Respawn:timer:8",
+    "Description": "Newer Dystopia builds: population-scaled respawn waves. 0 = disabled. Not a fixed respawn delay. Query dys_spawntime_per_player in the server console for your build-specific range and meaning before changing it. Older builds may report Unknown command.",
+    "Keywords": "dys_spawntime_per_player",
+    "FieldName": "dys_spawntime_per_player",
+    "InputType": "number",
+    "ParamFieldName": "dys_spawntime_per_player",
+    "DefaultValue": "0",
+    "EnumValues": {},
+    "MinValue": "0"
   }
 ]
